@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="01-basicsFlow" doc:id="48d9921b-50a1-48a5-b180-2fb6a37f865b" >
+		<http:listener doc:name="Listener" doc:id="6418a207-2e17-4ca0-b42f-3f69f0f4c263" config-ref="HTTP_Listener_config" path="basic/{cm}/{demo}"/>
+		<set-payload value="#['Hello ' ++ attributes.uriParams.cm as String ++ ' one ' ++ attributes.uriParams.demo  ++ attributes.queryParams.uname as String]" doc:name="Set Payload" doc:id="f6362ac2-fb48-4b51-a513-1d169c2c3cea" />
+		<logger level="INFO" doc:name="Logger" doc:id="5c06287a-5f53-4a03-a903-a50dff4dcef0" message="#[payload]"/>
+	</flow>
+</mule>
